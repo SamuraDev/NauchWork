@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>@superhelp_SH — фриланс · дипломы · курсовые · </title>
+  <meta name="description" content="Связь в Telegram: @superhelp_SH">
+  <meta name="theme-color" content="#0b0f1a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --bg2:#0e1322;
+      --fg:#e7eaf3;
+      --muted:#a7afc0;
+      --accent1:#8b5cf6; /* фиолетовый мягкий */
+      --accent2:#22d3ee; /* голубой неон */
+      --card:#12182a;
+      --border:rgba(255,255,255,.08);
+      --ring: rgba(34,211,238,.25);
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(34,211,238,.15), transparent 60%),
+        radial-gradient(900px 600px at 110% 10%, rgba(139,92,246,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+    /* мягкая дыхательная анимация фона без резких вспышек */
+    @keyframes glowShift {
+      0%,100% { filter: saturate(1) brightness(1); }
+      50% { filter: saturate(1.05) brightness(1.02); }
+    }
+    body::before{
+      content:"";
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(800px 520px at 70% 20%, rgba(34,211,238,.10), transparent 60%),
+        radial-gradient(700px 480px at 15% 80%, rgba(139,92,246,.08), transparent 60%);
+      pointer-events:none;
+      animation: glowShift 12s ease-in-out infinite;
+      z-index:-1;
+    }
+    @media (prefers-reduced-motion: reduce){
+      body::before{ animation:none }
+    }
+
+    .container{ max-width:1000px; margin:0 auto; padding:24px clamp(16px,4vw,40px); }
+    header.nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:12px 16px; border:1px solid var(--border); border-radius:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .brand{ display:flex; align-items:center; gap:12px }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: conic-gradient(from 20deg, var(--accent2), var(--accent1), var(--accent2));
+      box-shadow: 0 0 16px var(--ring), inset 0 0 10px rgba(255,255,255,.15);
+    }
+    .title{ font-weight:800; font-size:18px; letter-spacing:.2px }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:14px; gap:8px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      color:var(--fg); text-decoration:none; font-weight:700;
+      transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover{ transform: translateY(-1px) }
+    .btn.primary{
+      border-color: rgba(34,211,238,.35);
+      box-shadow: 0 0 0 4px var(--ring), var(--shadow);
+      background: linear-gradient(180deg, rgba(34,211,238,.15), rgba(139,92,246,.12));
+    }
+
+    .hero{
+      display:grid; grid-template-columns: 1.05fr .95fr; gap:24px; align-items:center;
+      margin: clamp(28px,7vh,60px) 0 22px;
+    }
+    @media(max-width:900px){ .hero{ grid-template-columns:1fr } }
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border-radius:999px; font-size:12px; color:#cffafe;
+      border:1px solid rgba(34,211,238,.35);
+      background: linear-gradient(180deg, rgba(34,211,238,.12), rgba(139,92,246,.10));
+      box-shadow: 0 0 16px var(--ring);
+    }
+    h1{ font-size: clamp(28px, 5.2vw, 52px); line-height:1.04; margin:10px 0 10px }
+    .sub{ color:var(--muted); margin:0 0 14px; font-size: clamp(14px, 1.7vw, 18px) }
+    .cta{ display:flex; gap:12px; flex-wrap:wrap }
+
+    /* карточки услуг */
+    .services{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px; margin:18px 0; }
+    @media(max-width:900px){ .services{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media(max-width:640px){ .services{ grid-template-columns: 1fr; } }
+
+    .card{
+      position:relative;
+      padding:16px; border-radius: var(--radius);
+      background: var(--card);
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      will-change: transform;
+      transform-style: preserve-3d;
+      overflow:hidden;
+    }
+    .card:hover{ transform: translateY(-4px) rotateX(0.6deg) rotateY(-0.6deg) }
+    .card h3{ margin:6px 0 6px; font-size:18px }
+    .card p{ margin:0; color:var(--muted); font-size:14px }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px }
+    .chip{ font-size:11px; padding:6px 8px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid var(--border) }
+    .card .glow{
+      content:"";
+      position:absolute; inset:-30%;
+      background: radial-gradient(300px 200px at var(--mx,60%) var(--my,40%), rgba(34,211,238,.15), transparent 60%);
+      mix-blend-mode: screen; pointer-events:none;
+      transition: opacity .25s ease;
+      opacity:.75;
+    }
+
+    /* секция "о себе" + преимущества */
+    .about{
+      display:grid; grid-template-columns: 1fr 1fr; gap:18px; margin:26px 0 10px;
+    }
+    @media(max-width:900px){ .about{ grid-template-columns: 1fr; } }
+    .panel{
+      padding:18px; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .list{ margin:0; padding-left:18px; color:var(--muted) }
+    .list li{ margin:6px 0 }
+
+    footer{ margin:28px 0 16px; color:var(--muted); text-align:center; font-size:14px }
+
+    /* доступность */
+    a:focus-visible, button:focus-visible, .card:focus-visible{
+      outline: 2px solid var(--accent2);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="nav" aria-label="Навигация">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="title">@superhelp_SH</div>
+      </div>
+      <nav>
+        <a class="btn" href="#services">Услуги</a>
+        <a class="btn" href="#about">Обо мне</a>
+        <a class="btn primary" id="tgTop" target="_blank" rel="noopener">Написать в Telegram</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="hero">
+      <div>
+        <span class="eyebrow">Фриланс — тексты, курсовые и вёрстка</span>
+        <h1>Помогу с вашей научной работой</h1>
+        <p class="sub">Быстро, без воды и с соблюдением сроков. Работаю прозрачно: фиксирую ТЗ, согласовываю этапы, присылаю промежуточные результаты.</p>
+        <div class="cta">
+          <a class="btn primary" id="tgHero" target="_blank" rel="noopener" aria-label="Открыть Telegram">@superhelp_SH</a>
+          <a class="btn" href="#services">Смотреть услуги</a>
+        </div>
+      </div>
+      <div id="services" class="services" aria-label="Услуги">
+        <article class="card" tabindex="0">
+          <div class="glow" aria-hidden="true"></div>
+          <h3>Работа с текстом и курсовыми</h3>
+          <p>Структура, корректность, оформление. Помощь с планом, источниками и проверкой оригинальности.</p>
+          <div class="chips">
+            <span class="chip">Оформление ГОСТ</span>
+            <span class="chip">Проверка/правки</span>
+            <span class="chip">План + источники</span>
+          </div>
+        </article>
+        <article class="card" tabindex="0">
+          <div class="glow" aria-hidden="true"></div>
+          <h3>Фриланс‑заказы</h3>
+          <p>Маленькие задачи «под ключ»: правки, интеграции, автоматизация, скрипты, мелкие правки контента.</p>
+          <div class="chips">
+            <span class="chip">Автоматизация</span>
+            <span class="chip">Скрипты</span>
+            <span class="chip">QA и мелкие задачи</span>
+          </div>
+        </article>
+        <article class="card" tabindex="0">
+          <div class="glow" aria-hidden="true"></div>
+          <h3>Вёрстка сайтов</h3>
+          <p>Чистая адаптивная вёрстка на HTML/CSS/JS.</p>
+          <div class="chips">
+            <span class="chip">HTML/CSS/JS</span>
+            <span class="chip">Адаптив</span>
+            <span class="chip">Оптимизация</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="panel">
+        <h2>Обо мне</h2>
+        <p class="sub">Надёжно, спокойно, по делу. Беру задачи, где нужен результат без лишней суеты.</p>
+        <ul class="list">
+          <li>Чёткие дедлайны и регулярные отчёты.</li>
+          <li>Пишу человеческим языком и держу структуру.</li>
+          <li>Вёрстка: валидная, адаптивная, аккуратные шрифты и сетки.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Как работаю</h2>
+        <ul class="list">
+          <li><b>Бриф</b>: вы описываете задачу в Telegram.</li>
+          <li><b>Эстимейт</b>: называю стоимость/сроки, фиксируем ТЗ.</li>
+          <li><b>В работу</b>: промежуточные результаты по чек‑пойнтам.</li>
+          <li><b>Сдача</b>: финальные файлы + инструкции.</li>
+        </ul>
+        <div class="cta" style="margin-top:10px">
+          <a class="btn primary" id="tgBottom" target="_blank" rel="noopener">Связаться</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> superhelp_SH • Связь: <a id="tgFooter" href="#" target="_blank" rel="noopener" style="color:#bce9ff; text-decoration:none">@superhelp_SH</a>
+    </footer>
+  </div>
+
+  <script>
+    // Настройка Telegram‑ссылок
+    const tgHandle = "superhelp_SH"; // без @
+    const tgURL = `https://t.me/${tgHandle}`;
+    for (const id of ["tgTop","tgHero","tgBottom","tgFooter"]) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      el.href = tgURL;
+      el.title = "Написать в Telegram @" + tgHandle;
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Небольшой «живой» эффект подсветки карточек без WebGL
+    const cards = document.querySelectorAll(".card");
+    for (const c of cards){
+      c.addEventListener("pointermove", (e)=>{
+        const r = c.getBoundingClientRect();
+        const mx = ((e.clientX - r.left)/r.width)*100;
+        const my = ((e.clientY - r.top)/r.height)*100;
+        c.style.setProperty("--mx", mx.toFixed(1)+"%");
+        c.style.setProperty("--my", my.toFixed(1)+"%");
+      });
+      c.addEventListener("pointerleave", ()=>{
+        c.style.removeProperty("--mx");
+        c.style.removeProperty("--my");
+      });
+    }
+  </script>
+
+  <!-- Структурированные данные -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "superhelp_SH",
+    "jobTitle": "Фрилансер: тексты, курсовые, вёрстка сайтов",
+    "url": "https://t.me/superhelp_SH",
+    "sameAs": ["https://t.me/superhelp_SH"],
+    "description": "Помощь с текстами и курсовыми, аккуратная вёрстка сайтов. Связь в Telegram: @superhelp_SH"
+  }
+  </script>
+</body>
+</html>
